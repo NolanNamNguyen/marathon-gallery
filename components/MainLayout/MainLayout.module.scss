@@ -1,4 +1,4 @@
 .root_container {
-  @apply flex flex-col items-center min-h-screen h-fit;
-  @apply bg-gradient-to-r from-violet-500 to-fuchsia-500;
+  @apply flex flex-col items-center min-h-screen h-fit translate-y-12;
+  @apply bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50];
 }

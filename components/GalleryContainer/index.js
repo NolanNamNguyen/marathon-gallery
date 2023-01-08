@@ -1,33 +1,53 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from '@scss/components/HomePage.module.scss';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ImageContainer from '@components/ImageContainer';
 import { useElementSize, useWindowSize } from 'usehooks-ts';
+import { useTimeoutFn } from 'react-use';
 
-const GalleryContainer = ({ images }) => {
-  const [squareRef, { width, height }] = useElementSize();
+const GalleryContainer = ({ images, setSetPreviewImg }) => {
+  const mapElmPosition = [
+    { Wwidth: 480, col: 1 },
+    { Wwidth: 1126, col: 2 },
+    { Wwidth: 1487, col: 3 },
+    { Wwidth: 1847, col: 4 },
+    { Wwidth: 2207, col: 5 },
+    { Wwidth: 3000, col: 6 },
+  ];
+  const [isShowing, setIsShowing] = useState(false);
+  const [, , resetIsShowing] = useTimeoutFn(() => setIsShowing(true), 500);
+  const [squareRef, { width }] = useElementSize();
   console.log('width', width);
-  const lastElmOf1stRow = useRef(1);
-  const fixedElementsY = useRef(0);
-  const { width } = useWindowSize();
-  const lastWidth = useRef(initialValue);
-  const updateLastElm = (position, currentWidth) => {
-    if (lastElmOf1stRow.current < position) {
-      lastElmOf1stRow.current = position;
-    }
+  const [numOfCols, setNumOfCols] = useState(2);
+  const windowSize = useWindowSize();
+
+  const resetShow = () => {
+    setIsShowing(false);
+    resetIsShowing();
   };
-  const setFixedElementsY = (Yaxis) => {
-    fixedElementsY.current = Yaxis;
-  };
+
+  useEffect(() => {
+    resetShow();
+  }, [numOfCols]);
+
+  useEffect(() => {
+    setNumOfCols(
+      mapElmPosition.find((screen) => windowSize.width < screen.Wwidth)?.col,
+    );
+  }, [windowSize.width]);
+
   return (
-    <div ref={squareRef} className={classes.gallery_container}>
+    <div
+      style={{ columnCount: numOfCols }}
+      ref={squareRef}
+      className={classes.gallery_container}
+    >
       {images.map((loadedImg, i) => (
         <ImageContainer
-          updateLastElm={updateLastElm}
-          setFixedElementsY={setFixedElementsY}
-          fixedElementsY={fixedElementsY}
+          setSetPreviewImg={setSetPreviewImg}
           key={`image-${i}`}
+          show={isShowing}
           loadedImg={loadedImg}
           index={i}
         />

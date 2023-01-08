@@ -36,7 +36,7 @@ const SearchContainer = ({
   }, []);
 
   return (
-    <div className="border px-[40px] py-[30px] w-[70%] flex flex-col items-center">
+    <div className="px-[40px] py-[30px] w-[70%] flex flex-col items-center bg-white border-2 mb-3 mt-3">
       <h3 className="text-left">Find Images by BIB or Names</h3>
       <div className="flex w-full">
         <FormControl className="w-1/4 mr-2">

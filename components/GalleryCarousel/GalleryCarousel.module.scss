@@ -1,0 +1,35 @@
+.container {
+  @apply flex w-screen h-screen fixed top-0 left-0 z-50;
+  @apply bg-black;
+}
+
+.image_container {
+  @apply flex justify-center items-center px-4 py-8 w-[80%] overflow-hidden;
+  img {
+    @apply w-full h-full;
+  }
+}
+
+.slider_container {
+  @apply flex;
+}
+
+.achievement {
+  @apply flex-col flex bg-black mr-4;
+  .pace {
+    @apply h-[80%] flex flex-col justify-between;
+  }
+}
+
+.slider {
+  @apply flex;
+  .image_slider {
+    @apply flex flex-col justify-around overflow-auto;
+    .thumbnail_container {
+      @apply w-[70px] h-[70px] flex justify-center items-center cursor-pointer;
+      img {
+        @apply w-full;
+      }
+    }
+  }
+}

@@ -1,38 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import classes from '@scss/components/HomePage.module.scss';
-import { useWindowSize } from 'usehooks-ts';
+import { Transition } from '@headlessui/react';
 
-const ImageContainer = ({
-  index,
-  loadedImg,
-  setFixedElementsY,
-  updateLastElm,
-  fixedElementsY,
-}) => {
+const ImageContainer = ({ loadedImg, show, setSetPreviewImg }) => {
   const containerRef = useRef();
-  const position = index + 1;
-  const { width } = useWindowSize();
-  useEffect(() => {
-    if (!index) {
-      const YofFirstFixedElement =
-        containerRef.current.getBoundingClientRect().y;
-      console.dir(containerRef.current.getBoundingClientRect());
-      setFixedElementsY(YofFirstFixedElement);
-    }
-    if (fixedElementsY) {
-      containerRef.current.getBoundingClientRect().y !== fixedElementsY &&
-        updateLastElm(position);
-    }
-  }, [width]);
-
+  const selectImage = () => {
+    setSetPreviewImg(loadedImg);
+  };
   return (
-    <div
-      id={`img-container-${position}`}
-      ref={containerRef}
-      className={classes.img_container}
+    <Transition
+      show={show}
+      enter="transform transition duration-[400ms]"
+      enterFrom="opacity-0 translate-y-12"
+      enterTo="opacity-100 translate-y-0"
+      leave="transform duration-400 transition ease-in-out"
+      leaveFrom="opacity-100 rotate-0"
+      leaveTo="opacity-0"
     >
-      <img alt="Ops!!!" src={loadedImg.thumbnail} />
-    </div>
+      <div
+        onClick={() => {
+          selectImage();
+        }}
+        ref={containerRef}
+        className={classes.img_container}
+      >
+        <img alt="Ops!!!" src={loadedImg.thumbnail} />
+      </div>
+    </Transition>
   );
 };
 

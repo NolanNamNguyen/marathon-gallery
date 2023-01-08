@@ -2,14 +2,30 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@HOC/*": ["HOC/*"],
-      "@hooks/*": ["Hooks/*"],
-      "@reduxSlices/*": ["redux/slices/*"],
-      "@utils/*": ["shared/utils/*"],
-      "@routes/*": ["shared/routes/*"],
-      "@constant/*": ["shared/constant/*"],
-      "@scss/*": ["scss/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@HOC/*": [
+        "HOC/*"
+      ],
+      "@hooks/*": [
+        "Hooks/*"
+      ],
+      "@reduxSlices/*": [
+        "redux/slices/*"
+      ],
+      "@utils/*": [
+        "shared/utils/*"
+      ],
+      "@routes/*": [
+        "shared/routes/*"
+      ],
+      "@constant/*": [
+        "shared/constant/*"
+      ],
+      "@scss/*": [
+        "scss/*"
+      ]
     }
   }
 }
