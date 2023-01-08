@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
+import classes from './MainLayout.module.scss';
 
 const MainLayout = ({ title, children }) => {
   return (
-    <div className="w-screen">
+    <div className={classes.root_container}>
       <Head>
         <title>{title}</title>
         <meta

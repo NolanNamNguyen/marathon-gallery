@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { mergeWith, throttle, isEmpty } from 'lodash';
-import Router from 'next/router';
-import { signOut } from 'next-auth/react';
-import { ROUTER_LOGIN } from '@routes/routes';
 import { API_URL } from './setting';
 
 const THROTTLE_DELAY = 1000;
@@ -12,12 +9,12 @@ export const generateAppServiceToken = () => ({
 });
 
 const defaultOptions = {
-  withCredentials: true,
+  // withCredentials: true,
 };
 
 // eslint-disable-next-line default-param-last
 function getApi(path, options = {}, apiURL) {
-  return axios.get(`${apiURL || API_URL}/${path.replace(/^\//, '')}`, {
+  return axios.get(`${apiURL || API_URL}/${path}`, {
     ...defaultOptions,
     ...options,
     headers: {
@@ -30,7 +27,7 @@ function getApi(path, options = {}, apiURL) {
 function postApi(path, data, options = {}) {
   const headerParams = mergeWith(options.headers, generateAppServiceToken());
 
-  return axios.post(`${API_URL}/${path.replace(/^\//, '')}`, data, {
+  return axios.post(`${API_URL}/${path}`, data, {
     ...defaultOptions,
     ...options,
     headers: headerParams,
@@ -38,7 +35,7 @@ function postApi(path, data, options = {}) {
 }
 
 function putApi(path, data, options = {}) {
-  return axios.put(`${API_URL}/${path.replace(/^\//, '')}`, data, {
+  return axios.put(`${API_URL}/${path}`, data, {
     ...defaultOptions,
     ...options,
     headers: {
@@ -49,7 +46,7 @@ function putApi(path, data, options = {}) {
 }
 
 function deleteApi(path, options = {}) {
-  return axios.delete(`${API_URL}/${path.replace(/^\//, '')}`, {
+  return axios.delete(`${API_URL}/${path}`, {
     ...defaultOptions,
     ...options,
     headers: {
@@ -77,7 +74,7 @@ function uploadApi(path, params, options = {}, uploadSingle = false) {
         layout_id && formData.append('layout_id', layout_id);
       });
 
-  return axios.post(`${API_URL}/${path.replace(/^\//, '')}`, formData, {
+  return axios.post(`${API_URL}/${path}`, formData, {
     ...defaultOptions,
     ...options,
     headers: {
@@ -89,7 +86,8 @@ function uploadApi(path, params, options = {}, uploadSingle = false) {
 }
 
 const notAuthorizedCallback = throttle(() => {
-  signOut().then(() => Router.push(ROUTER_LOGIN, {}, { shallow: true }));
+  // signOut().then(() => Router.push(ROUTER_LOGIN, {}, { shallow: true }));
+  console.log('sign out');
 }, THROTTLE_DELAY);
 
 axios.interceptors.response.use(

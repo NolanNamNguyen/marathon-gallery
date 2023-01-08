@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   eslint: {
     dirs: ['.'],
+  },
+  env: {
+    API_URL: (() => process.env.API_URL)(),
   },
 };
 

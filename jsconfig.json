@@ -8,7 +8,8 @@
       "@reduxSlices/*": ["redux/slices/*"],
       "@utils/*": ["shared/utils/*"],
       "@routes/*": ["shared/routes/*"],
-      "@constant/*": ["shared/constant/*"]
+      "@constant/*": ["shared/constant/*"],
+      "@scss/*": ["scss/*"]
     }
   }
 }
