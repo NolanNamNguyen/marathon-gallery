@@ -4,9 +4,6 @@ const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
-  env: {
-    API_URL: (() => process.env.API_URL)(),
-  },
   images: {
     domains: ['www.pngfind.com'],
   },

@@ -14,11 +14,11 @@ const GalleryContainer = ({ images, setSetPreviewImg }) => {
     { Wwidth: 1847, col: 4 },
     { Wwidth: 2207, col: 5 },
     { Wwidth: 3000, col: 6 },
+    { Wwidth: 3500, col: 7 },
   ];
   const [isShowing, setIsShowing] = useState(false);
   const [, , resetIsShowing] = useTimeoutFn(() => setIsShowing(true), 500);
-  const [squareRef, { width }] = useElementSize();
-  console.log('width', width);
+  const [squareRef] = useElementSize();
   const [numOfCols, setNumOfCols] = useState(2);
   const windowSize = useWindowSize();
 
@@ -32,9 +32,10 @@ const GalleryContainer = ({ images, setSetPreviewImg }) => {
   }, [numOfCols]);
 
   useEffect(() => {
-    setNumOfCols(
-      mapElmPosition.find((screen) => windowSize.width < screen.Wwidth)?.col,
-    );
+    const cols = mapElmPosition.find(
+      (screen) => windowSize.width < screen.Wwidth,
+    )?.col;
+    setNumOfCols(cols > -1 ? cols : 7);
   }, [windowSize.width]);
 
   return (

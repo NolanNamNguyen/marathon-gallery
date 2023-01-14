@@ -20,9 +20,9 @@ function* handleSearch(params) {
   }
 }
 
-function* handleGetImages(params) {
+function* handleGetImages({ payload }) {
   try {
-    const response = yield Api.get(GET_IMAGES, { params });
+    const response = yield Api.get(GET_IMAGES, { payload });
     yield put(getImagesSuccess(response.data));
   } catch (error) {
     yield put(getImagesFailed(error.response.data));
