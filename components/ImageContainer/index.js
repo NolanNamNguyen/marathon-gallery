@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import classes from '@scss/components/HomePage.module.scss';
 import { Transition } from '@headlessui/react';
 
 const ImageContainer = ({ loadedImg, show, setSetPreviewImg }) => {
@@ -22,7 +21,7 @@ const ImageContainer = ({ loadedImg, show, setSetPreviewImg }) => {
           selectImage();
         }}
         ref={containerRef}
-        className={classes.img_container}
+        className="img_container"
       >
         <img alt="Ops!!!" src={loadedImg.thumbnail} />
       </div>

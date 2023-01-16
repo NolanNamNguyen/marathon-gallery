@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import classes from '@scss/components/HomePage.module.scss';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ImageContainer from '@components/ImageContainer';
@@ -42,7 +41,7 @@ const GalleryContainer = ({ images, setSetPreviewImg }) => {
     <div
       style={{ columnCount: numOfCols }}
       ref={squareRef}
-      className={classes.gallery_container}
+      className="gallery_container"
     >
       {images.map((loadedImg, i) => (
         <ImageContainer

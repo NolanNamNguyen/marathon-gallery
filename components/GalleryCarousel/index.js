@@ -2,7 +2,6 @@ import React from 'react';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import CloseIcon from '@mui/icons-material/Close';
-import classes from './GalleryCarousel.module.scss';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ImageSlider from '@components/Slider';
@@ -22,18 +21,18 @@ const GalleryCarousel = ({ previewImg, closeModal, images, setPreviewImg }) => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.container}>
+      <div className="gal_container">
         <div className="flex flex-grow">
-          <div className={classes.image_container}>
+          <div className="image_container">
             {previewImg ? (
               <img alt="Ops!!!" src={previewImg.thumbnail} />
             ) : null}
           </div>
-          <div className={classes.slider_container}>
-            <div className={classes.achievement}>
+          <div className="slider_container">
+            <div className="achievement">
               <h1 className="text-orange-500">THÀNH TÍCH</h1>
               <hr />
-              <div className={classes.pace}>
+              <div className="pace">
                 <div>
                   <h2 className="text-white">84956 | 21Km</h2>
                   <h3 className="text-orange-500">2:07:46</h3>
@@ -42,7 +41,7 @@ const GalleryCarousel = ({ previewImg, closeModal, images, setPreviewImg }) => {
                   </span>
                 </div>
                 <Button
-                  className={`bg-[#222222] pl-4 flex justify-start ${classes.facebook_button}`}
+                  className="bg-[#222222] pl-4 flex justify-start facebook_button"
                   variant="outlined"
                   startIcon={
                     <div className="flex">
@@ -73,7 +72,7 @@ const GalleryCarousel = ({ previewImg, closeModal, images, setPreviewImg }) => {
             htmlColor="#ffffff"
           />
         </div>
-        <div className={classes.slider}>
+        <div className="slider">
           <ImageSlider images={images} setPreviewImg={setPreviewImg} />
         </div>
       </div>

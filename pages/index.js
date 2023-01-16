@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import MainLayout from '@components/MainLayout';
-import Home from './home-page';
+import Home from '@components/Home';
 
 const Index = () => {
   return (
