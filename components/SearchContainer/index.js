@@ -55,7 +55,7 @@ const SearchContainer = ({
           </Select>
         </FormControl>
         <Autocomplete
-          className="w-3/4"
+          className="w-3/4 flex flex-grow"
           id="asynchronous-demo"
           sx={{ width: 300 }}
           open={open}

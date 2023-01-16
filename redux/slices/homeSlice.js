@@ -53,7 +53,10 @@ export const homeSlice = createSlice({
     },
     getImagesSuccess: (state, { payload: { images } }) => {
       if (images.length) {
-        const results = images.map((i) => ({ ...i, thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}` }))
+        const results = images.map((i) => ({
+          ...i,
+          thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+        }));
         state.images = results;
       }
       state.fetchingImages = false;
