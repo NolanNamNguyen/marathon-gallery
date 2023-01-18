@@ -41,8 +41,8 @@ export const homeSlice = createSlice({
     getSearchOption: (state) => {
       state.searching = true;
     },
-    getSearchOptionSuccess: (state, { options }) => {
-      state.searchOptions = options;
+    getSearchOptionSuccess: (state, { payload }) => {
+      state.images = payload?.images;
       state.searching = false;
     },
     getSearchOptionFailed: (state) => {
@@ -53,11 +53,11 @@ export const homeSlice = createSlice({
     },
     getImagesSuccess: (state, { payload: { images } }) => {
       if (images.length) {
-        const results = images.map((i) => ({
-          ...i,
-          thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
-        }));
-        state.images = results;
+        // const results = images.map((i) => ({
+        //   ...i,
+        //   thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+        // }));
+        state.images = images;
       }
       state.fetchingImages = false;
     },

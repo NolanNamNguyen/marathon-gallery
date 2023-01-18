@@ -5,9 +5,6 @@ const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
-  images: {
-    domains: ['www.pngfind.com'],
-  },
 };
 
 module.exports = nextConfig;

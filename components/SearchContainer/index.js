@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { getImages, getSearchOption } from '@reduxSlices/homeSlice';
+import { useForm, Controller } from 'react-hook-form';
 
 const SearchContainer = ({
   searchOptions,
@@ -18,22 +19,35 @@ const SearchContainer = ({
   searching,
   handleGetImages,
 }) => {
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm({});
   const selectOpt = [
     { name: 'Hạ Long 2022', id: 'abc' },
     { name: 'Đà Nẵng 2022', id: '123' },
     { name: 'HCM 2023', id: 'abssc' },
   ];
+  // const formName = {
+  //   search_term: 'search_term',
+  // };
   const handleSelectTour = (value) => {
     console.log('wtf is value', value);
   };
   const [open, setOpen] = useState(false);
 
+  console.log('errors', errors);
+
   useEffect(() => {
-    // handleGetImages({
-    //   fbclid: 'IwAR318IibNdJMCha5lutNI7hXqde3s6rf6aDVnbz9RBog75q2NuRDcTQlIAs',
-    // });
     handleGetImages();
   }, []);
+
+  const onSubmit = (formData) => {
+    console.log('wtf formData', formData);
+    handleSearch({ ...formData });
+  };
 
   return (
     <div className="px-[40px] py-[30px] w-[70%] flex flex-col items-center bg-white border-2 mb-3 mt-3">
@@ -70,20 +84,42 @@ const SearchContainer = ({
           options={searchOptions}
           loading={searching}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Asynchronous"
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <React.Fragment>
-                    {false ? (
-                      <CircularProgress color="inherit" size={20} />
-                    ) : null}
-                    {params.InputProps.endAdornment}
-                  </React.Fragment>
-                ),
-              }}
+            <Controller
+              control={control}
+              name="search_term"
+              render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { invalid, isTouched, isDirty, error },
+                formState,
+              }) => (
+                <TextField
+                  {...params}
+                  label="Asynchronous"
+                  inputRef={ref}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  onKeyDown={(e) => {
+                    console.log('e', e);
+                    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+                      console.log('in here?');
+                      console.log('value here', getValues());
+                      handleSubmit(onSubmit)();
+                    }
+                  }}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {false ? (
+                          <CircularProgress color="inherit" size={20} />
+                        ) : null}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )}
             />
           )}
         />
