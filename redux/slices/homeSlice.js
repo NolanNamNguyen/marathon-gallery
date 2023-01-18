@@ -42,7 +42,13 @@ export const homeSlice = createSlice({
       state.searching = true;
     },
     getSearchOptionSuccess: (state, { payload }) => {
-      state.images = payload?.images;
+      if (payload?.images.length) {
+        const results = payload?.images.map((i) => ({
+          ...i,
+          thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+        }));
+        state.images = results;
+      }
       state.searching = false;
     },
     getSearchOptionFailed: (state) => {
@@ -53,11 +59,11 @@ export const homeSlice = createSlice({
     },
     getImagesSuccess: (state, { payload: { images } }) => {
       if (images.length) {
-        // const results = images.map((i) => ({
-        //   ...i,
-        //   thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
-        // }));
-        state.images = images;
+        const results = images.map((i) => ({
+          ...i,
+          thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+        }));
+        state.images = results;
       }
       state.fetchingImages = false;
     },
