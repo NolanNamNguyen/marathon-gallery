@@ -87,7 +87,6 @@ function uploadApi(path, params, options = {}, uploadSingle = false) {
 
 const notAuthorizedCallback = throttle(() => {
   // signOut().then(() => Router.push(ROUTER_LOGIN, {}, { shallow: true }));
-  console.log('sign out');
 }, THROTTLE_DELAY);
 
 axios.interceptors.response.use(

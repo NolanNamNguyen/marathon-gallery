@@ -16,7 +16,6 @@ export const commonSlice = createSlice({
     logError: {
       reducer: (state, action) => {
         // eslint-disable-next-line no-console
-        console.log('log payload from prepare', action.payload);
         state.saving = true;
       },
       prepare: (

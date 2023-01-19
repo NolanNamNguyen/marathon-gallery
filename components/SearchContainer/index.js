@@ -33,9 +33,7 @@ const SearchContainer = ({
   // const formName = {
   //   search_term: 'search_term',
   // };
-  const handleSelectTour = (value) => {
-    console.log('wtf is value', value);
-  };
+  const handleSelectTour = (value) => {};
   const [open, setOpen] = useState(false);
 
   console.log('errors', errors);

@@ -12,7 +12,6 @@ import Api from '../../config/api';
 import { GET_IMAGES, SEARCH_IMAGES } from '@constant/endpoint';
 
 function* handleSearch({ payload }) {
-  console.log('payload', payload);
   const params = payload;
   try {
     const response = yield Api.get(SEARCH_IMAGES, { params });

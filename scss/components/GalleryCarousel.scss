@@ -21,7 +21,7 @@
 //}
 
 .image_container {
-  @apply flex justify-center items-center px-4 py-8 w-[86%] overflow-hidden bg-[#121212];
+  @apply flex justify-center items-center px-4 py-8 w-[100%] overflow-hidden bg-[#121212];
   @apply transition-all;
   max-height: calc(100vh - 100px);
 
@@ -43,16 +43,25 @@
 }
 
 .slider {
-  @apply flex py-3;
+  @apply flex py-3 overflow-x-auto gap-4;
   .image_slider {
-    @apply flex justify-around h-fit overflow-x-auto w-full;
+    @apply flex h-fit w-full;
     .thumbnail_container {
-      @apply w-[70px] h-[70px] flex justify-center items-center cursor-pointer overflow-hidden;
+      @apply w-[70px] h-[70px] flex justify-center items-center cursor-pointer overflow-hidden min-w-[70px];
       img {
         @apply w-full;
       }
     }
   }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .facebook_button {

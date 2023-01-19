@@ -7,7 +7,6 @@ const Home = () => {
   const [previewImg, setPreviewImg] = useState(null);
   const [previewModalOpen, setPreviewModalOpen] = useState(false);
   const handleCloseModal = () => {
-    console.log('closing');
     setPreviewModalOpen(false);
   };
   const setSetPreviewImg = (image) => {

@@ -19,7 +19,6 @@ export const homeSlice = createSlice({
     logError: {
       reducer: (state, action) => {
         // eslint-disable-next-line no-console
-        console.log('log payload from prepare', action.payload);
         state.saving = true;
       },
       prepare: (
@@ -59,11 +58,11 @@ export const homeSlice = createSlice({
     },
     getImagesSuccess: (state, { payload: { images } }) => {
       if (images.length) {
-        const results = images.map((i) => ({
-          ...i,
-          thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
-        }));
-        state.images = results;
+        // const results = images.map((i) => ({
+        //   ...i,
+        //   thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+        // }));
+        state.images = images;
       }
       state.fetchingImages = false;
     },
