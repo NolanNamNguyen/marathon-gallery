@@ -61,6 +61,7 @@ export const homeSlice = createSlice({
         const results = images.map((i) => ({
           ...i,
           thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
+          full_size: `${process.env.NEXT_PUBLIC_API_URL}/${i.full_size}`,
         }));
         state.images = results;
       }
