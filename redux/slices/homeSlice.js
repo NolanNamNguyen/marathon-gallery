@@ -47,7 +47,9 @@ export const homeSlice = createSlice({
           thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
           full_size: `${process.env.NEXT_PUBLIC_API_URL}/${i.full_size}`,
         }));
-        state.images = results;
+        state.images = process.env.NEXT_PUBLIC_APPLY_DOMAIN
+          ? payload.images
+          : results;
       }
       state.searching = false;
     },
@@ -64,7 +66,7 @@ export const homeSlice = createSlice({
           thumbnail: `${process.env.NEXT_PUBLIC_API_URL}/${i.thumbnail}`,
           full_size: `${process.env.NEXT_PUBLIC_API_URL}/${i.full_size}`,
         }));
-        state.images = results;
+        state.images = process.env.NEXT_PUBLIC_APPLY_DOMAIN ? images : results;
       }
       state.fetchingImages = false;
     },

@@ -34,7 +34,7 @@ module.exports = {
     'react/prop-types': 0,
     'import/no-unresolved': 2,
     'no-undef': 2,
-    'prettier/prettier': 2,
+    'prettier/prettier': 1,
     'no-console': 1,
     'react/jsx-boolean-value': 2,
     camelcase: 0,

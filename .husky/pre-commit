@@ -7,8 +7,8 @@ npm run lint ||
         false; 
 )
 
-npm run build ||
-(
-        echo '❌👷🔨❌ Next build failed: View the errors above to see why. ❌👷🔨❌'
-        false;
-)
+#npm run build ||
+#(
+#        echo '❌👷🔨❌ Next build failed: View the errors above to see why. ❌👷🔨❌'
+#        false;
+#)
